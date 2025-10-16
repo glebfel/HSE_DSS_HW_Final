@@ -35,3 +35,52 @@
 ## Конвейер «все-в-одном»
 
 - python -m etl.pipeline --csv SampleSuperstore.csv
+
+## Схема хранилища
+
+```
+ASCII‑схема Data Vault (Sample Superstore)
+
+Легенда: [H] HUB, <L> LINK, {S} SAT
+
+                 [H] h_ship_mode / [H] h_segment
+                 |
+                 [H] h_geography
+                 |
+                 [H] h_category
+                 |
+                 [H] h_sub_category
+                 |
+                 [H] h_ship_mode
+                 |
+                 [H] h_segment
+                 |
+                 [H] h_geography
+                 |
+                 [H] h_category
+                 |
+                 [H] h_sub_category
+                    \
+                     \
+                      <L> l_sale
+                           \__ {S} s_sale_metrics
+                     /
+              [H] h_ship_mode
+              [H] h_segment
+
+[H] h_category
+   \__ {S} s_category
+
+[H] h_geography
+   \__ {S} s_geography
+
+[H] h_segment
+   \__ {S} s_segment
+
+[H] h_ship_mode
+   \__ {S} s_ship_mode
+
+[H] h_sub_category
+   \__ {S} s_sub_category
+
+```
